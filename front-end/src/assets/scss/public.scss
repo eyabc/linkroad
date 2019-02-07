@@ -23,7 +23,7 @@
 	.layer-title{ padding: 0 10px; line-height: 40px; margin: -20px -20px 20px; font-size: 17px; color: #000}
 }
 span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middle;
-	+*{display:inline-block;  text-align:center; vertical-align: middle}
+	+*{display:inline-block;  text-align:center; padding: 20px 40px; vertical-align: middle}
 }
 
 
@@ -45,7 +45,7 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 
 .fields {
 	li {
-		+li{margin-top:10px;}
+		+li{margin-top:10px; }
 	}
 }
 .btn{
@@ -61,6 +61,7 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 		weight:bold;
 		color: #000;
 	}
+	margin-top: 5px;
 	cursor: pointer;
 	&:focus, &:hover { color: white; background: #09f; transition: .3s; border: #09f;}
 	&:active { letter-spacing: 2px}
@@ -71,4 +72,10 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 	.option { font-size: 12px; display: flex; text-align: center; display:block; justify-centent: space-between; padding-top: 10px; 
 		a {margin: 15px;}
 	}
+}
+
+/* signup */
+.signup {
+	padding: 20px 30px;
+	.layer-title { margin-bottom: 10px; text-align: center;}
 }

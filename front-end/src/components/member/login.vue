@@ -1,6 +1,6 @@
 <template>
 	<div class="login" v-if="!$store.state.member">
-		<h3 class="layer-title">사이트 로그인</h3>
+		<h3 class="layer-title">&nbsp; </h3>
 		<form action="" method="post" @submit.prevent="">
 			<ul class="fields">
 				<li>
@@ -44,8 +44,8 @@
 				}
 			},
 			signinPopup () {
-				let popOption="width=400px, height=500px, toolbar=no, menubar=no, location=no, status=no, resizable=no;"
-				window.open('http://localhost:8080', "회원가입" , popOption, false)
+				let popOption="width=400px, height=300px, toolbar=no, menubar=no, location=no, status=no, resizable=no;"
+				window.open(this.$store.state.siteurl+'/signup', "회원가입" , popOption, false)
 			}
 		}
 	}
