@@ -1,0 +1,74 @@
+/* site-bg */
+
+.site-wrap{ background: #ffc;width: 95%; height: 100%; margin: 10px auto; }
+
+/* header */
+.header {
+	.container {display: flex; justify-content: space-between}
+	.s-gnb { padding: 0 20px;
+		a { color: #777; font-size: 12px}
+	}	
+} 
+
+/* layer */
+.layer { position: fixed; left:0; right:0; top:0; bottom: 0;
+	text-align: center;
+	background: fade-out(#000, .7);
+	overflow: auto; z-index: 100;
+	>div { background: #fff; padding: 20px; margin: 20px; position: relative; text-align: left;
+		>a.close{color:#fff; background:#000; display: flex; width: 40px; height: 40px; align-items: center; justify-content: center; font-size: 17px; position: absolute; right:0; top:0; text-decoration: none; transition: .3s;  
+			&:hover{background: #09f;}
+		}
+	}
+	.layer-title{ padding: 0 10px; line-height: 40px; margin: -20px -20px 20px; font-size: 17px; color: #000}
+}
+span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middle;
+	+*{display:inline-block;  text-align:center; vertical-align: middle}
+}
+
+
+/* input */
+::placeholder{color: #aaa;}
+.input-label{position: relative; display: block; $size: 50px;
+	.pre{position: absolute; top:0; left:0; height:$size; width: $size; display: flex; justify-content: center; align-items: center; z-index: 10;}
+	.lbl{position:absolute; top:0; bottom:0; line-height: $size; left:$size; vertical-align: middle; display: block; color:#aaa;}
+	input[type="text"],
+	input[type="password"],
+	select { height:$size; padding-left: $size; font-size: 15px;-webkit-appearance:none;border: #fff}
+	select{background:#fff; border-radius: 0; border: 1px solid #fff;}
+	textarea{padding: 15px 0 10px $size;}
+	input:valid+.lbl,
+	textarea:valid+.lbl{display:none}	
+}
+
+.full-width{width:100%;box-sizing:border-box;}
+
+.fields {
+	li {
+		+li{margin-top:10px;}
+	}
+}
+.btn{
+	outline: none;
+	height: 40px;
+	text-align: center;
+	width: 100%;
+	background: #fff;
+	border: 2px solid #fff;
+	text-shadow:0;
+	font: {
+		size: 12px;
+		weight:bold;
+		color: #000;
+	}
+	cursor: pointer;
+	&:focus, &:hover { color: white; background: #09f; transition: .3s; border: #09f;}
+	&:active { letter-spacing: 2px}
+}
+
+/* login */
+.login{width:300px; margin: 10px; 
+	.option { font-size: 12px; display: flex; text-align: center; display:block; justify-centent: space-between; padding-top: 10px; 
+		a {margin: 15px;}
+	}
+}
