@@ -44,7 +44,7 @@
 				}
 			},
 			signinPopup () {
-				let popOption="width=400px, height=300px, toolbar=no, menubar=no, location=no, status=no, resizable=no;"
+				let popOption="width=400px, height=350px, toolbar=no, menubar=no, location=no, status=no, resizable=no;"
 				window.open(this.$store.state.siteurl+'/signup', "회원가입" , popOption, false)
 			}
 		}
