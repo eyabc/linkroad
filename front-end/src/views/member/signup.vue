@@ -40,12 +40,24 @@
 	export default {
 		methods: {
 			signup(e) {
- 				const frm = e.target
- 				const data = {
- 					id: frm.id.value,
- 					pw: frm.pw.value,
- 					email: frm.email.value
- 				}
+				const frm = e.target
+				const data = {
+					id: frm.id.value,
+					pw: frm.pw.value,
+					email: frm.email.value
+				}
+				fetch('/api/signup', {
+					method: 'post',
+					headers: {  'Content-Type': 'application/json' },
+					body: JSON.stringify(data)
+				})
+				.then(res=>res.json()).then(json => {
+					if(json.success){
+						alert('회원가입 되었습니다. 로그인 하여 이용해주세요')
+					} else {
+						alert('오류')
+					}
+				})
 			}
 		}
 	}
