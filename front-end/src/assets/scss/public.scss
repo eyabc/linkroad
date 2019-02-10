@@ -1,10 +1,10 @@
 /* site-bg */
 
-.site-wrap{ background: #ffc;width: 95%; height: 100%; margin: 10px auto; }
+.site-wrap{ background: #fff;width: 99%; height: 100%; margin: 10px auto; }
 
 /* header */
 .header {
-	.container {display: flex; justify-content: space-between}
+	.container {}
 	.s-gnb { padding: 0 20px;
 		a { color: #777; font-size: 12px}
 	}	
@@ -66,6 +66,10 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 	&:focus, &:hover { color: white; background: #09f; transition: .3s; border: #09f;}
 	&:active { letter-spacing: 2px}
 }
+.s-btn {
+	display: block;
+	text-decoration: bold;
+}
 
 /* login */
 .login{width:300px; margin: 10px; 
@@ -78,4 +82,17 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 .signup {
 	padding: 20px 30px;
 	.layer-title { margin-bottom: 10px; text-align: center;}
+}
+
+/* header.vue */
+.s-gnb>ul {	float: right;}
+
+h1 {float:left; margin: 0 10px; line-height: 30px; font-size: 30px; width: 140px}
+.search-frm {float:left;width:calc(100% - 70%);
+.input-label {line-height: 30px;position: relative; display:block; $size: 30px;
+	input[type="text"] {position:absolute;font-size: 12px;height:$size;width: 100%; border-bottom: solid #09f 0.5px; padding-left: 0; padding-right: 30px; box-sizing: border-box;}
+	input:focus {outline:none;}
+	.pre { position: absolute; left: unset; right: 0; height: $size; width:$size;top:0;bottom:1px;}
+	.pre:hover { background: #0a0; color: #fff; border-radius: 0 25px; cursor: pointer}
+}
 }

@@ -19,12 +19,13 @@
 						<small v-if="capsLock">capsLock이 켜져있습니다</small>
 					</label>
 				</li>
-				<button class="btn" type="submit">로그인</button>
-				<div class="option">
-					<a href="#" @click.prevent="signinPopup">회원가입</a>
-					<a href="#">pw/id 찾기</a>
-				</div>
 			</ul>
+			<button class="btn" type="submit">로그인</button>
+			<div class="option">
+				<a href="#" @click.prevent="autoLogin" class="">자동로그인</a>
+				<a href="#" @click.prevent="signinPopup">회원가입</a>
+				<a href="#">pw/id 찾기</a>
+			</div>
 		</form>
 	</div>
 </template>
