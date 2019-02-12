@@ -37,7 +37,7 @@
 
 			},
 			search () {
-				console.log("젠장")
+				console.log("search")
 			},
 			memberCheck () {
 			// console.log("memberCheck")

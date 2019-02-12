@@ -1,6 +1,5 @@
 <template>
 	<div class="login" v-if="!$store.state.member">
-		<h3 class="layer-title">&nbsp; </h3>
 		<form action="/api/login" method="post" @submit.prevent="login">
 			<ul class="fields">
 				<li>
