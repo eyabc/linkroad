@@ -64,6 +64,7 @@
 						alert('로그인 되었습니다.')
 						this.$store.state.member = json.member
 						this.$store.commit('closeLayer')
+						this.$router.push('/home')
 					} else {
 						alert('아이디 또는 비밀번호가 일치하지 않습니다.')
 						frm.id.focus()

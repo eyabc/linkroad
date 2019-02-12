@@ -1,11 +1,15 @@
-/* site-bg */
+/* clear */
+@mixin clear () {
+	&:after{content:"";display:block;clear:both;}
+}
 
+/* site-bg */
 .site-wrap{ background: #fff;width: 99%; height: 100%; margin: 10px auto; }
 
 /* header */
 .header {
-	.container {}
-	.s-gnb { padding: 0 20px;
+	.container {@include clear();}
+	.s-gnb { padding: 0 20px; float: right;
 		a { color: #777; font-size: 12px}
 	}	
 } 
@@ -85,14 +89,17 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 }
 
 /* header.vue */
-.s-gnb>ul {	float: right;}
-
-h1 {float:left; margin: 0 10px; line-height: 30px; font-size: 30px; width: 140px}
-.search-frm {float:left;width:calc(100% - 70%);
-.input-label {line-height: 30px;position: relative; display:block; $size: 30px;
-	input[type="text"] {position:absolute;font-size: 12px;height:$size;width: 100%; border-bottom: solid #09f 0.5px; padding-left: 0; padding-right: 30px; box-sizing: border-box;}
-	input:focus {outline:none;}
-	.pre { position: absolute; left: unset; right: 0; height: $size; width:$size;top:0;bottom:1px;}
-	.pre:hover { background: #0a0; color: #fff; border-radius: 0 25px; cursor: pointer}
+.s-gnb{
+	@include clear();
+	>ul {float: right;}
 }
+
+.logo {float:left; margin: 0 10px; line-height: 30px; font-size: 30px; width: 140px}
+.search-frm {float:left;width:calc(100% - 70%);
+	.input-label {line-height: 30px;position: relative; display:block; $size: 30px;
+		input[type="text"] {position:absolute;font-size: 12px;height:$size;width: 100%; border-bottom: solid #09f 0.5px; padding-left: 0; padding-right: 30px; box-sizing: border-box;}
+		input:focus {outline:none;}
+		.pre { position: absolute; left: unset; right: 0; height: $size; width:$size;top:0;bottom:1px;}
+		.pre:hover { background: #0a0; color: #fff; border-radius: 0 25px; cursor: pointer}
+	}
 }

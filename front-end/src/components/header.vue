@@ -1,7 +1,7 @@
 <template>
 	<header class="header">
 		<div class="container">
-				<div class="s-gnb">
+			<div class="s-gnb">
 				<ul v-if="$store.state.member">
 					<li><a href="#" @click.prevent="logout">로그아웃</a></li>
 				</ul>
@@ -9,15 +9,15 @@
 					<li><a href="#" @click.prevent="openLoginPopup">로그인</a></li>
 				</ul>
 			</div>
-				<h1 class="logo">LinkRoad</h1>
-				<div class="search-frm">
-					<label class="input-label">
-						<input type="text" name="search-query" autofocus>
-						<button type="submit" class="pre" @click.prevent="search"><i class="fas fa-search-location"></i></button>
-					</label>
-				</div>
-				<ul class="l-gnb" v-if="$store.state.member"></ul>
+			<h1 class="logo">LinkRoad</h1>
+			<div class="search-frm">
+				<label class="input-label">
+					<input type="text" name="search-query" autofocus>
+					<button type="submit" class="pre" @click.prevent="search"><i class="fas fa-search-location"></i></button>
+				</label>
 			</div>
+			<ul class="l-gnb" v-if="$store.state.member"></ul>
+		</div>
 	</header>
 </template>
 <script>
