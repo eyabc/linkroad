@@ -1,6 +1,6 @@
 <template>
 	<div class="addClassLayer">
-		<form action="" method="post" @submit.prevent="">
+		<form action="/api/put-class" method="post" @submit.prevent="putClass">
 			<ul class="fields">
 					<label class="input-label">
 						<span class="pre"><i class="fas fa-tag"></i></span>
@@ -11,7 +11,7 @@
 				<li>
 					<label class="input-label">
 						<span class="pre"><i class="fas fa-info"></i></span>
-						<textarea name="description" class="full-width" required autofocus></textarea>
+						<textarea name="description" class="full-width"></textarea>
 						<span class="lbl">상세설명</span>
 					</label>
 				</li>
@@ -21,5 +21,28 @@
 	</div>	
 </template>
 <script type="text/javascript">
-	
+	export default {
+		methods : {
+			putClass (e) {
+				const frm = e.target
+				const data = {
+					title: frm.title.value,
+					description: frm.description.value
+				}
+				fetch(frm.action, {
+					method: 'post',
+					headers: {'Content-Type':'application/json'},
+					body: JSON.stringify(data)
+				}).then(res=>res.json()).then(json=>{
+					if(json.success){
+						alert('class 추가 완료')
+						this.$store.state.classList.push(data)
+
+					} else {
+						alert('calss 추가 실패')
+					}
+				})
+			}
+		}
+	}
 </script>

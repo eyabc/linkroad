@@ -21,3 +21,14 @@ router.get('/api/class-list', async (req, res) => {
 	}
 	res.json(resultJSON)
 })
+
+router.post('/api/put-class', async(req,res)=>{
+	const sql =`INSERT INTO class(id, title, description) VALUE(?,?,?)`
+	let resultJSON = { success: true}
+	try {
+		await execQuery(sql, [req.session.member.id,req.body.title, req.body.description])
+	} catch (error) {
+		resultJSON.success = false
+	}
+	res.json(resultJSON)
+})
