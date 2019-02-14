@@ -5,6 +5,11 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+// Vue.prototype.getClassList = async () => {
+// 	const json = await fetch ('/api/class-list').then(res=>res.json())
+// 	return json.classList
+// }
+
 new Vue({
   router,
   store,

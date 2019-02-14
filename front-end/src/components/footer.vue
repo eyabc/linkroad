@@ -1,1 +1,3 @@
-footer.vue
+<template>
+	
+</template>

@@ -1,21 +1,19 @@
-.home-wrap {
+
+.box1 {
 	border: solid 1px #fff;
-	margin: 10px 0;
-	.box1 {
-		border: solid 1px #fff;
-		display: inline-block;
-		padding: 10px;
-		margin: 10px;
-		width: calc(50% - 40px);		
-		.box-title { line-height: 30px;position: relative; font-size: 17px; border-bottom: solid rgba(0, 153, 255, 0.5) 2px; padding-bottom: 3px;
-			span { position: absolute;right: 0; cursor: pointer; color: rgba(187, 187,187, 0.5);
-				&:hover { color: #000}
-			}
+	display: inline-block;
+	padding: 10px;
+	margin: 10px;
+	width: calc(50% - 40px);		
+	.box-title { line-height: 30px;position: relative; font-size: 17px; border-bottom: solid rgba(0, 153, 255, 0.5) 2px; padding-bottom: 3px;
+		span { position: absolute;right: 0; cursor: pointer; color: rgba(187, 187,187, 0.5);
+			&:hover { color: #000}
 		}
-		.class-list { margin: 3px 0;}
-		.class-item { padding: 10px 10px; border: rgba(187, 187,187, 0.5) solid 1px; margin: 2px 0; cursor: pointer;
-			&:hover { border : solid #fff 1px; }
-			a { text-decoration: none; display: block}
-		}
-	} 
-}
+	}
+	.class-list { margin: 3px 0;}
+	.class-item { padding: 10px 10px; border: rgba(187, 187,187, 0.5) solid 1px; margin: 2px 0; cursor: pointer;
+		&:hover { border : solid #fff 1px; }
+		a { text-decoration: none; display: block}
+	}
+} 
+

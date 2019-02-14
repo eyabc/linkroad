@@ -1,5 +1,5 @@
 <template>
-	<div class="home-wrap">
+	<div class="">
 		<classList class="box1" />
 	</div>
 </template>

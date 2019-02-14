@@ -15,7 +15,6 @@ export default new Vuex.Store({
     closeLayer(state) { state.layerState = false},
     logout(state) { state.member = null },
     setClassList(state, val) { state.classList = val}
-
   },
   actions: {
 

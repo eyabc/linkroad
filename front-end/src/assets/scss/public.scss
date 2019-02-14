@@ -5,7 +5,10 @@
 
 /* site-bg */
 .site-wrap{ background: #fff;width: 99%; height: 100%; margin: 10px auto; }
-
+.container{
+	border: solid 1px #fff;
+	margin: 10px 0;
+}
 /* header */
 .header {
 	.container {@include clear();}

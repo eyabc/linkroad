@@ -1,10 +1,9 @@
 <template>
 	<div>
 		<h1 class="box-title">Class 목록 <span @click="openClassPopup"><i class="fas fa-plus"></i></span></h1>
-
-		<ul class="class-list" v-if="$store.state.classList.length">
+		<ul class="class-list">
 			<li class="class-item" v-for="v in $store.state.classList">
-				<a href="#" @click.prevent="test">{{v.title}}</a>
+				 <router-link :to="`/class/${v.cidx}`" >{{v.title}}</router-link>
 			</li>
 		</ul>
 	</div>
@@ -13,19 +12,23 @@
 	import addClass from '../class/addClass'
 	export default {
 		created () {
-			this.getClassList ()
+			this.getClassList()
 		},
 		methods: {
-			getClassList () {
-				fetch ('/api/class-list').then(res=>res.json()).then(json=>{
-					this.$store.commit('setClassList', json.classList)
-				})
-			},
 			openClassPopup () {
 				this.$store.commit('openLayer', addClass)
 			},
+			viewClass() {
+				console.log("test")
+				
+				this.$router.push('/class')
+			},
 			test() {
 				console.log("test")
+			},
+			async getClassList () {
+				const json = await fetch ('/api/class-list').then(res=>res.json())
+				this.$store.commit('setClassList', json.classList)
 			}
 		}
 	}
