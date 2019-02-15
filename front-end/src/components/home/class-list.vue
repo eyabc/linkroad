@@ -1,6 +1,12 @@
 <template>
-	<div>
-		<h1 class="box-title">Class 목록 <span @click="openClassPopup"><i class="fas fa-plus"></i></span></h1>
+	<div class="box1">
+		<header class="box-title box-main-title">
+			<h1>Class 목록</h1>
+			<div>
+				<span class="title-friend" ><i @click="openClassPopup" class="fas fa-plus"></i></span>
+			</div>
+		</header>
+		 
 		<ul class="class-list">
 			<li class="class-item" v-for="v in $store.state.classList">
 				 <router-link :to="`/class/${v.cidx}`" >{{v.title}}</router-link>
@@ -12,6 +18,7 @@
 	import addClass from '../class/addClass'
 	export default {
 		created () {
+			// this.$store.commit('setClassList', this.getClassList())
 			this.getClassList()
 		},
 		methods: {
@@ -19,8 +26,6 @@
 				this.$store.commit('openLayer', addClass)
 			},
 			viewClass() {
-				console.log("test")
-				
 				this.$router.push('/class')
 			},
 			test() {

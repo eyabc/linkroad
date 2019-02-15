@@ -3,6 +3,8 @@
 	&:after{content:"";display:block;clear:both;}
 }
 
+/* font */
+
 /* site-bg */
 .site-wrap{ background: #fff;width: 99%; height: 100%; margin: 10px auto; }
 .container{
@@ -108,3 +110,5 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 		.pre:hover { background: #0a0; color: #fff; border-radius: 0 25px; cursor: pointer}
 	}
 }
+a.notTd { text-decoration: none} 
+

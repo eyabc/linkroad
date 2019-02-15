@@ -45,3 +45,15 @@ router.post('/api/put-class', async(req,res)=>{
 	}
 	res.json(resultJSON)
 })
+
+router.post('/api/update-class/:cidx', async(req,res)=>{
+	const sql = `UPDATE class SET title = ?, description = ? WHERE cidx = ?`
+	const cidx = req.params.cidx
+	let resultJSON = {success: true}
+	try { 
+		await execQuery(sql, [req.body.title, req.body.description, cidx])
+	} catch (error) {
+		resultJSON.success=false
+	}
+	res.json(resultJSON)
+})

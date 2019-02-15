@@ -9,11 +9,11 @@
 					<li><a href="#" @click.prevent="openLoginPopup">로그인</a></li>
 				</ul>
 			</div>
-			<h1 class="logo">LinkRoad</h1>
+			<h1 class="logo"><router-link class="notTd" :to="`/home`">LinkRoad</router-link></h1>
 			<div class="search-frm">
 				<label class="input-label">
 					<input type="text" name="search-query" autofocus>
-					<button type="submit" class="pre" @click.prevent="search"><i class="fas fa-search-location"></i></button>
+					<button type="submit" class="pre" @click.prevent="search"><i class="fas fa-search-location title-friend"></i></button>
 				</label>
 			</div>
 			<ul class="l-gnb" v-if="$store.state.member"></ul>
@@ -50,3 +50,7 @@
 	}
 }
 </script>
+<style lang='scss' scoped>
+
+
+</style>

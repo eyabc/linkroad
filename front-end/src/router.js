@@ -21,20 +21,20 @@ export default new Router({
       component: () => import(`${view}/home.vue`),
     },
     {
-    path: '/class/:cidx',
-    component: () => import(`${_class}/class-main.vue`),
-    children: [
+      path: '/class/:cidx',
+      component: () => import(`${_class}/class-main.vue`),
+      children: [
 
-    ]
-  }
+      ]
+    }
     ]
   },
 
   {
    path:'/signup',
    component: () => import(`${member}/signup.vue`)
-  },
-  
+ },
+ 
 
  ]
 })
