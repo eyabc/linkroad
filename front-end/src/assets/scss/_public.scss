@@ -111,4 +111,6 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 	}
 }
 a.notTd { text-decoration: none} 
-
+.icons {cursor: pointer; color: rgba(187, 187,187, 0.5);
+	&:hover, &:focus { color: #000 }
+}

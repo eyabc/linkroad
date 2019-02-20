@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-module.exports = router;
 
 router.get('/api/class-list', async (req, res) => {
 	const sql = `SELECT * FROM class WHERE id = ?`
@@ -57,3 +56,5 @@ router.post('/api/update-class/:cidx', async(req,res)=>{
 	}
 	res.json(resultJSON)
 })
+
+module.exports = router;

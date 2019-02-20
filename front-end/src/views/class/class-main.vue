@@ -1,31 +1,37 @@
 <template>
-	<div>
-		<div class="box1" v-if="!editState">
-			<header class="box-title box-main-title">
+	<div class="contents">
+		<div class="class-info" v-if="!editState">
+			<header class="">
 				<h1>{{ classInfo.title }}</h1>
-				<div>
-					<span class="small-font">생성날짜 {{classInfo.date}}</span> 
-					<span @click="goEdit"><i class="fas fa-pencil-alt title-friend" ></i></span>
-				</div>
+				<hr class="class-hr">
 			</header>
+			<div class="opt">
+				<span class="small-font">생성날짜 {{classInfo.date}}</span> 
+				<span @click="goEdit"><i class="fas fa-pencil-alt icons" ></i></span>
+			</div>
 			<p v-html="nl2br(classInfo.description)" />
 		</div>
-		<div class="box1 class-edit" v-else>
+		<div class="class-info class-edit" v-else>
 			<form method="post" @submit.prevent="editClass">
-				<header class="box-title box-main-title">
+				<header class="">
 					<input type="text" name="title" :value="`${classInfo.title}`" required Tabindex=1>
-					<div>
-						<button type="submit"><i class="fas fa-check title-friend" Tabindex=3></i></button>
-						<span @click="editCancel"><i class="fas fa-undo-alt title-friend"></i></span>
-					</div>
 				</header>
 			<textarea name="description" :value="`${classInfo.description}`" Tabindex=2></textarea>
+			<div>
+						<button type="submit"><i class="fas fa-check icons" Tabindex=3></i></button>
+						<span @click="editCancel"><i class="fas fa-undo-alt icons"></i></span>
+					</div>
 			</form>
 		</div>
+		<levelView />
 	</div>
 </template>
 <script type="text/javascript">
+	import levelView from '@/components/class/level-view'
 	export default {
+		components: {
+			levelView
+		},
 		data () {
 			return {
 				classInfo: null,
@@ -77,13 +83,25 @@
 	}
 </script>
 
-<style type="text/css">
+<style lang="scss">
+@mixin clear () {
+	&:after{content:"";display:block;clear:both;}
+}
+h1 { font-size: 20px }
+.contents { padding: 10px;}
 .small-font { font-size: 12px; color : #777; display: inline-block;margin-right: 10px }
 .class-edit 
-input { height: 30px; width: calc(100%); padding-right: 50px; 
-	box-sizing: border-box;}
-	i { display: inline-block; padding-right: 10px;
-	}
-	textarea {width: 100%; height: 80px; box-sizing: border-box;}
-
+input { height: 30px; width: calc(50%); padding-right: 50px; box-sizing: border-box; }
+textarea {width: 50%; height: 80px; box-sizing: border-box;}
+.class-info {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 20px;
+		height: 100px;
+}
+hr.class-hr { width: 30%; margin: 0 auto; height: 3px;background-color: #ddd; border: none; }
+.opt { line-height: 20px;
+	span { top:0;line-height: 20px; }
+	i{ line-height:20px}
+}
 </style>

@@ -9,7 +9,7 @@
 					<li><a href="#" @click.prevent="openLoginPopup">로그인</a></li>
 				</ul>
 			</div>
-			<h1 class="logo"><router-link class="notTd" :to="`/home`">LinkRoad</router-link></h1>
+			<h1 class="logo"><router-link class="-" :to="`/home`">LinkRoad</router-link></h1>
 			<div class="search-frm">
 				<label class="input-label">
 					<input type="text" name="search-query" autofocus>
@@ -50,7 +50,7 @@
 	}
 }
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
 
 
 </style>
