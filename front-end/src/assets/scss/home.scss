@@ -6,20 +6,53 @@
 	margin: 10px;
 	width: calc(50% - 40px);		
 	
-	.class-list { margin: 3px 0;}
-	.class-item { padding: 10px 10px; border: rgba(187, 187,187, 0.5) solid 1px; margin: 2px 0; cursor: pointer;
-		&:hover { border : solid #fff 1px; }
-		a { text-decoration: none; display: block}
-	}
+	
 } 
+.list { margin: 3px 0;}
+.list-item { padding: 10px 10px; border: rgba(187, 187,187, 0.5) solid 1px; margin: 2px 0; cursor: pointer;
+	&:hover { border : solid #fff 1px; }
+	a { text-decoration: none; display: block}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .box-title { line-height: 30px;position: relative; font-size: 17px; border-bottom: solid rgba(0, 153, 255, 0.5) 2px; padding-bottom: 3px;
-		
-		&.box-main-title{
-			h1{font-size:17px}
-			>div{position:absolute;right:0;top:0;bottom:0}
-		}
+
+	&.box-main-title{
+		h1{font-size:17px}
+		>div{position:absolute;right:0;top:0;bottom:0}
 	}
-	.title-friend { right: 0; cursor: pointer; color: rgba(187, 187,187, 0.5);
-			&:hover, &:focus { color: #000}
-		}
+}
+.title-friend { right: 0; cursor: pointer; color: rgba(187, 187,187, 0.5);
+	&:hover, &:focus { color: #000}
+}

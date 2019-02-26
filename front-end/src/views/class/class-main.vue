@@ -1,5 +1,5 @@
 <template>
-	<div class="contents">
+	<div class="contents" v-if="classInfo">
 		<div class="class-info" v-if="!editState">
 			<header class="">
 				<h1>{{ classInfo.title }}</h1>
@@ -23,7 +23,7 @@
 					</div>
 			</form>
 		</div>
-		<levelView />
+		<levelView class="level-contents" v-for="(tasks, level) in levels" :tasks="tasks" :level="level" />
 	</div>
 </template>
 <script type="text/javascript">
@@ -36,14 +36,17 @@
 			return {
 				classInfo: null,
 				editState: false,
+				levels: [],
+				cidx: this.$route.params.cidx
 			}
 		},
 		created () {
 			this.getClass()
+			this.getTask()
 		},
 		methods: {
 			async getClass () {
-				const json = await fetch ('/api/class-list/' + this.$route.params.cidx).then(res=>res.json())
+				const json = await fetch ('/api/class-list/' + this.cidx).then(res=>res.json())
 				this.classInfo = json.classInfo
 				console.log(this.classInfo)
 			},
@@ -61,22 +64,23 @@
 					title: frm.title.value,
 					description: frm.description.value
 				}
-				console.log(data)
 
-				await fetch('/api/update-class/'+this.classInfo.cidx, {
+				const json = await fetch('/api/update-class/'+this.classInfo.cidx, {
 					method: 'post',
 					headers: {  'Content-Type': 'application/json' },
 					body: JSON.stringify(data)
-				})
-				.then(res=>res.json()).then(json=>{
-					if(json.success){
-						this.classInfo.title=data.title
-						this.classInfo.description=data.description
-						this.editState = false
-					} else {
-						alert('오류')
-					}
-				})
+				}).then(res=>res.json())
+				if(json.success){
+					this.classInfo.title=data.title
+					this.classInfo.description=data.description
+					this.editState = false
+				} else {
+					alert('오류')
+				}
+			},
+			async getTask () {
+				const json = await fetch(`/api/get-task/${this.cidx}/0`).then(res=>res.json())
+				this.levels.push(json.taskInfo)
 			}
 		}
 

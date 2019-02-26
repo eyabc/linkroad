@@ -7,8 +7,8 @@
 			</div>
 		</header>
 		 
-		<ul class="class-list">
-			<li class="class-item" v-for="v in $store.state.classList">
+		<ul class="list">
+			<li class="list-item" v-for="v in $store.state.classList">
 				 <router-link :to="`/class/${v.cidx}`" >{{v.title}}</router-link>
 			</li>
 		</ul>

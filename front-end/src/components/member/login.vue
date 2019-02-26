@@ -58,7 +58,6 @@
 					headers: {'Content-Type':'application/json'},
 					body: JSON.stringify(data)
 				}).then(res=>res.json()).then(json=>{
-					console.log(json)
 					if(json.success){
 						alert('로그인 되었습니다.')
 						this.$store.state.member = json.member

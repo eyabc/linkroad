@@ -13,8 +13,20 @@ router.post('/api/put-task/:cidx', async (req, res) => {
 	const sql = `INSERT INTO task(title, url, id, cidx, parrent_task) VALUES(?,?,?,?,?)`
 	const resultJSON = {success: true}
 	console.log(req.session.member.id)
+	console.log(req.params.cidx)
 	try {
 		await execQuery(sql, [req.body.title, req.body.url, req.session.member.id, req.params.cidx, parrent_task])
+	} catch (error) {
+		resultJSON.success = false
+	}
+	res.json(resultJSON)
+})
+
+router.get('/api/get-task/:cidx/:parrent_task', async (req, res) => {
+	const sql = `SELECT * FROM task WHERE cidx=? and parrent_task=?`
+	resultJSON = {success: true}
+	try {
+		resultJSON.taskInfo = await execQuery(sql, [req.params.cidx, req.params.parrent_task])
 	} catch (error) {
 		resultJSON.success = false
 	}
