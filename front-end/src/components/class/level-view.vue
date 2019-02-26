@@ -37,7 +37,7 @@
 					title: frm.title.value,
 					url: frm.url.value
 				}
-				const json = fetch(frm.action, {
+				const json = await fetch(frm.action, {
 					method: 'post',
 					headers: {'Content-Type':'application/json'},
 					body: JSON.stringify(data)
