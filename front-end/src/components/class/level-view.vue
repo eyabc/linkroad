@@ -6,7 +6,7 @@
 			<span class="title-friend" v-else><i @click="putTaskToggle" class="fas fa-times"></i></span>
 		</header>
 		<div class="tasks">
-			<form action="" method="post" v-if="putTaskState" @submit.prevent="test">
+			<form :action="`/api/put-task/${$route.params.cidx}`" method="post" v-if="putTaskState" @submit.prevent="putTask">
 				<input type="text" name="title" placeholder="Title">
 				<input type="text" name="url" placeholder="URL">
 				<button type="submit"></button>
@@ -32,8 +32,23 @@
 					this.putTaskState = true
 				}
 			},
-			test () {
-				console.log("test")
+			putTask (e) {
+				const frm = e.target
+				const data = { 
+					title: frm.title.value,
+					url: frm.url.value
+				}
+				fetch(frm.action, {
+					method: 'post',
+					headers: {'Content-Type':'application/json'},
+					body: JSON.stringify(data)
+				}).then(res=>res.json()).then(json=>{
+					if(json.success){
+						alert('task 추가완료')
+					} else {
+						alert('task 추가 실패')
+					}
+				})
 			}
 		}
 	}

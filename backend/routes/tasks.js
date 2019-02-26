@@ -8,8 +8,16 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/api/put-task', async (req, res) => {
-	const sql = `INSERT INTO tasks(title, url, id, cidx, parrent_task, level) VALUES(?,?,?,?,?,?)`
-
-}
+router.post('/api/put-task/:cidx', async (req, res) => {
+	const parrent_task = 0
+	const sql = `INSERT INTO task(title, url, id, cidx, parrent_task) VALUES(?,?,?,?,?)`
+	const resultJSON = {success: true}
+	console.log(req.session.member.id)
+	try {
+		await execQuery(sql, [req.body.title, req.body.url, req.session.member.id, req.params.cidx, parrent_task])
+	} catch (error) {
+		resultJSON.success = false
+	}
+	res.json(resultJSON)
+})
 module.exports = router;

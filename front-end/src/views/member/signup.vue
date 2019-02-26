@@ -13,14 +13,14 @@
 				<li>
 					<label class="input-label">
 						<span class="pre"><i class="fas fa-key"></i></span>
-						<input type="text" name="pw" class="full-width" required>
+						<input type="password" name="pw" class="full-width" required>
 						<span class="lbl">비밀번호</span>
 					</label>
 				</li>
 				<li>
 					<label class="input-label">
 						<span class="pre"><i class="fas fa-key"></i></span>
-						<input type="text" name="pw-re" class="full-width" required>
+						<input type="password" name="pw-re" class="full-width" required>
 						<span class="lbl">비밀번호 재확인</span>
 					</label>
 				</li>

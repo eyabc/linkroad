@@ -37,9 +37,8 @@
 					if(json.success){
 						alert('class 추가 완료')
 						this.$store.state.classList.push(data)
-
 					} else {
-						alert('calss 추가 실패')
+						alert('class 추가 실패')
 					}
 				})
 			}
