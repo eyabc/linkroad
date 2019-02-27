@@ -9,8 +9,10 @@
 	
 } 
 .list { margin: 3px 0;}
-.list-item { padding: 10px 10px; border: rgba(187, 187,187, 0.5) solid 1px; margin: 2px 0; cursor: pointer;
+.list-item { border: rgba(187, 187,187, 0.5) solid 1px; margin: 2px 0; cursor: pointer;
+	>a{padding: 10px;display:block;}
 	&:hover { border : solid #fff 1px; }
+	&.task-active{border:1px solid #09F}
 	a { text-decoration: none; display: block}
 }
 
