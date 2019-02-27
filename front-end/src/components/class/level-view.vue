@@ -25,18 +25,19 @@
       return {
         putTaskState: false,
         cidx: this.$route.params.cidx,
-        activeTask: null
+        activeTask: null,
       }
     },
+    created () {
+    },
     methods: {
-      putTaskToggle () {
-        this.putTaskState = !this.putTaskState
-      },
+      putTaskToggle () { this.putTaskState = !this.putTaskState },
       async putTask (e) {
         const frm = e.target
         const data = { 
           title: frm.title.value,
-          url: frm.url.value
+          url: frm.url.value,
+          parent_task: this.tidx 
         }
         const json = await fetch(frm.action, {
           method: 'post',
@@ -44,19 +45,27 @@
           body: JSON.stringify(data)
         }).then(res=>res.json())
         if(json.success){
-          this.tasks.push(data)
+          data.tidx = json.tidx
+          this.task.push(data)
         } else {
           alert('task 추가 실패')
         }
       },
       async viewChildren (tidx, key) {
-        this.activeTask = key
-        const json = await fetch(`/api/get-task/${this.cidx}/${tidx}`).then(res => res.json())
-        if (this.level + 1 === this.$parent.tasks.length) {
-          this.$parent.tasks.push(json.taskInfo)
+        if(this.activeTask === key){
+          this.activeTask = null
+          this.$parent.tasks.splice(this.level + 1, this.$parent.tasks.length - 1)
         } else {
-          this.$set(this.$parent.tasks, this.level + 1, json.taskInfo)
-          this.$parent.tasks.splice(this.level + 2, this.$parent.tasks.length - 1)
+          this.activeTask = key
+          const json = await fetch(`/api/get-task/${this.cidx}/${tidx}`).then(res => res.json())
+          if (this.level + 1 === this.$parent.tasks.length) {
+            this.$parent.tasks.push(json.taskInfo)
+            this.$parent.parent_task.push(tidx)
+          } else {
+            this.$set(this.$parent.tasks, this.level + 1, json.taskInfo)
+            this.$set(this.$parent.parent_task, this.level + 1, tidx)
+            this.$parent.tasks.splice(this.level + 2, this.$parent.tasks.length - 1)
+            this.$parent.parent_task.splice(this.level + 2, this.$parent.tasks.length - 1)
           // const arr = this.$parent.tasks.slice()
           // arr[this.level + 1] = json.taskInfo
           // arr.splice(this.level + 2, arr.length - 1)
@@ -64,8 +73,10 @@
         }
       }
     },
-    props: ['task', 'level']
-  }
+
+  },
+  props: ['task', 'level', 'tidx']
+}
 </script>
 <style lang="scss">
 .level-contents {

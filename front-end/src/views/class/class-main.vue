@@ -25,7 +25,7 @@
     </div>
 
     <div class="lev">
-      <levelView class="level-contents" v-for="(task, level) in tasks" :task="task" :level="level" />
+      <levelView class="level-contents" v-for="(task, level) in tasks" :task="task" :level="level" :tidx="parent_task[level]"/>
     </div>
   </div>
 </template>
@@ -40,7 +40,8 @@
         classInfo: null,
         editState: false,
         tasks: [],
-        cidx: this.$route.params.cidx
+        cidx: this.$route.params.cidx,
+        parent_task: [0]
       }
     },
     created () {

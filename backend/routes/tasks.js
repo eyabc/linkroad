@@ -9,22 +9,29 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/api/put-task/:cidx', async (req, res) => {
-	const parrent_task = 0
-	const sql = `INSERT INTO task(title, url, id, cidx, parrent_task) VALUES(?,?,?,?,?)`
+	let parent_task
+	if (req.body.parent_task == null ){
+		parent_task = 0
+	} else {
+		parent_task = req.body.parent_task
+	}
+	const sql = `INSERT INTO task(title, url, id, cidx, parent_task) VALUES(?,?,?,?,?)`
 	const resultJSON = {success: true}
 	try {
-		await execQuery(sql, [req.body.title, req.body.url, req.session.member.id, req.params.cidx, parrent_task])
+		const res = await execQuery(sql, [req.body.title, req.body.url, req.session.member.id, req.params.cidx, parent_task])
+		resultJSON.tidx = res.insertId
+		console.log(res)
 	} catch (error) {
 		resultJSON.success = false
 	}
 	res.json(resultJSON)
 })
 
-router.get('/api/get-task/:cidx/:parrent_task', async (req, res) => {
-	const sql = `SELECT * FROM task WHERE cidx=? and parrent_task=?`
+router.get('/api/get-task/:cidx/:parent_task', async (req, res) => {
+	const sql = `SELECT * FROM task WHERE cidx=? and parent_task=?`
 	resultJSON = {success: true}
 	try {
-		resultJSON.taskInfo = await execQuery(sql, [req.params.cidx, req.params.parrent_task])
+		resultJSON.taskInfo = await execQuery(sql, [req.params.cidx, req.params.parent_task])
 	} catch (error) {
 		resultJSON.success = false
 	}
