@@ -38,7 +38,8 @@ router.post('/api/put-class', async(req,res)=>{
 	const sql =`INSERT INTO class(id, title, description) VALUES(?,?,?)`
 	let resultJSON = { success: true}
 	try {
-		await execQuery(sql, [req.session.member.id,req.body.title, req.body.description])
+		const json = await execQuery(sql, [req.session.member.id,req.body.title, req.body.description])
+		resultJSON.cidx = json.insertId
 	} catch (error) {
 		resultJSON.success = false
 	}
@@ -53,6 +54,17 @@ router.post('/api/update-class/:cidx', async(req,res)=>{
 		await execQuery(sql, [req.body.title, req.body.description, cidx])
 	} catch (error) {
 		resultJSON.success=false
+	}
+	res.json(resultJSON)
+})
+
+router.post('/api/delete-class/:cidx', async(req, res)=>{
+	const sql = `DELETE FROM class WHERE cidx = ? `
+	let resultJSON = {success: true}
+	try {
+		await execQuery(sql, [req.params.cidx])
+	} catch(error) {
+		resultJSON.success = false
 	}
 	res.json(resultJSON)
 })

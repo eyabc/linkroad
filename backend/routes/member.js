@@ -49,9 +49,5 @@ router.get('/api/login', async (req, res) => {
 	}
 	res.json(resultJSON)
 })
-router.get('/api/logout', async(req, res) => {
-	const resultJSON = { success : true }
-	req.session.member = null
 
-})
 module.exports = router

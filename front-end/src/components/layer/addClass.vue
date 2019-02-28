@@ -1,5 +1,5 @@
 <template>
-	<div class="addClassLayer">
+	<div class="ClassLayer">
 		<form action="/api/put-class" method="post" @submit.prevent="putClass">
 			<ul class="fields">
 					<label class="input-label">
@@ -36,6 +36,7 @@
 				}).then(res=>res.json()).then(json=>{
 					if(json.success){
 						alert('class 추가 완료')
+						data.cidx = json.cidx
 						this.$store.state.classList.push(data)
 						this.$store.commit('closeLayer')
 					} else {

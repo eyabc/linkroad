@@ -95,7 +95,7 @@ span.middle{display: inline-block; height: 100%; width: 0; vertical-align: middl
 }
 
 /* login */
-.login{width:300px; margin: 10px; 
+.login{ min-width:300px; width: 300px;margin: 10px; 
 	.option { font-size: 12px; display: flex; text-align: center; display:block; justify-centent: space-between; padding-top: 10px; 
 		a {margin: 15px;}
 	}

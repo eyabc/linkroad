@@ -1,26 +1,27 @@
 <template>
   <div>
-    <classInfo />
     <header class="header">
       <h1>level</h1>
       <span class="title-friend" v-if="!putTaskState"><i @click="putTaskToggle" class="fas fa-plus"></i></span>
       <span class="title-friend" v-else><i @click="putTaskToggle" class="fas fa-times"></i></span>
     </header>
     <div class="tasks">
-      <form :action="`/api/put-task/${cidx}`" method="post" v-if="putTaskState" @submit.prevent="putTask">
-        <input type="text" name="title" placeholder="Title" required="">
-        <input type="text" name="url" placeholder="URL">
+      <form :action="`/api/put-task/${cidx}`" method="post" v-if="putTaskState" @submit.prevent="putTask" autocomplete="nope">
+        <input type="text" name="title" placeholder="Title" required="" autocomplete="nope">
+        <input type="text" name="url" placeholder="URL" autocomplete="nope">
         <button type="submit"></button>
       </form>
       <ul class="list">
         <li class="list-item" v-for="(item, key) in task" :key="key" :class="{'task-active': key === activeTask}"> 
           <a href="#" @click.prevent="viewChildren(item.tidx, key)">{{item.title}}</a>
+          <span @click="updateTask"><i class="fas fa-edit"></i></span>
         </li>
       </ul>
     </div>
   </div>
 </template>
 <script type="text/javascript">
+
   export default {
     data () {
       return {
@@ -30,6 +31,7 @@
       }
     },
     created () {
+      console.log(this.task)
     },
     methods: {
       putTaskToggle () { this.putTaskState = !this.putTaskState },
@@ -51,8 +53,9 @@
         } else {
           alert('task 추가 실패')
         }
-      },
+        },
       async viewChildren (tidx, key) {
+        console.log(tidx)
         if(this.activeTask === key){
           this.activeTask = null
           this.$parent.tasks.splice(this.level + 1, this.$parent.tasks.length - 1)
@@ -71,10 +74,12 @@
           // arr[this.level + 1] = json.taskInfo
           // arr.splice(this.level + 2, arr.length - 1)
           // this.$parent.tasks = arr
+         }
         }
-      }
-    },
-
+      },
+      updateTask () {
+        console.log('test')
+      },
   },
   props: ['task', 'level', 'tidx']
 }

@@ -15,10 +15,9 @@
 	</div>
 </template>
 <script type="text/javascript">
-	import addClass from '../class/addClass'
+	import addClass from '@/components/layer/addClass'
 	export default {
 		created () {
-			// this.$store.commit('setClassList', this.getClassList())
 			this.getClassList()
 		},
 		methods: {

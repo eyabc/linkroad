@@ -9,11 +9,8 @@
 	</div>
 </template>
 <script>
-	import login from './member/login'
-
 	export default {
 		components: {
-			login
 		},
 		methods: {
 			close() {

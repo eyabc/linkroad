@@ -21,7 +21,7 @@
 	</header>
 </template>
 <script>
-	import login from './member/login'
+	import login from '@/components/layer/login'
 
 	export default {
 		created () {
@@ -34,7 +34,7 @@
 			logout () {
 				this.$store.commit('logout')
 				this.$router.push('/')
-
+				sessionStorage.clear();
 			},
 			search () {
 				console.log("search")

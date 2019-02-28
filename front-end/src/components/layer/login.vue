@@ -35,6 +35,9 @@
 				capsLock: false
 			}
 		},
+		created () {
+			window.innerWidth = 400
+		},
 		methods: {
 			capsLockCheck (e) {
 				if(e.getModifierState("CapsLock")){

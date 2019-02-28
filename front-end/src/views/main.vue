@@ -16,7 +16,7 @@
 <script>
 	import siteHeader from '@/components/header'
 	import siteFooter from '@/components/footer'
-	import layerTemplate from '@/components/layerTemplate'
+	import layerTemplate from '@/components/layer/layerTemplate'
 	export default {
 		components: {
 			siteHeader, 
