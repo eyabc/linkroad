@@ -7,8 +7,19 @@
       </header>
       <div class="opt">
         <span class="small-font">생성날짜 {{classInfo.date}}</span> 
-        <span @click="goEdit"><i class="fas fa-pencil-alt icons" ></i></span>
+        <div class="setting-wrap">
+          <span class="icon-setting" @click="goEdit"><i class="fas fa-cog"></i></span>
+          <ul class="setting-menu">
+            <li>
+              <span><i class="fas fa-pen"></i></span>
+            </li>
+            <li>
+              <span><i class="fas fa-trash-alt"></i></span>
+            </li>
+          </ul>
+        </div>
       </div>
+
       <p v-html="nl2br(classInfo.description)" />
     </div>
     <div class="class-info class-edit" v-else>
@@ -102,12 +113,13 @@ h1 { font-size: 20px }
 input { height: 30px; width: calc(50%); padding-right: 50px; box-sizing: border-box; }
 textarea {width: 50%; height: 80px; box-sizing: border-box;}
 .class-info {
-  width: 100%;
+  min-width:600px;
+  width: 30%;
+  margin:0 auto 20px;
   text-align: center;
-  margin-bottom: 20px;
   height: 100px;
 }
-hr.class-hr { width: 30%; margin: 0 auto; height: 3px;background-color: #ddd; border: none; }
+hr.class-hr {height: 3px;background-color: #ddd; border: none; }
 .opt { line-height: 20px;
   span { top:0;line-height: 20px; }
   i{ line-height:20px}
@@ -119,7 +131,15 @@ hr.class-hr { width: 30%; margin: 0 auto; height: 3px;background-color: #ddd; bo
   -webkit-overflow-scrolling: touch; 
   -ms-overflow-style: -ms-autohiding-scrollbar;  
 }
-.scroll::-webkit-scrollbar {
-  display: none; }
+.scroll::-webkit-scrollbar {display: none; }
 .level-contents{flex: 0 0 auto; margin: 0 10px}
+.setting-wrap { float:right; width: 30px;}
+.setting-menu {background: #09f; width: 30px; float:right; display:none;
+}
+.fa-cog {display: block; padding: 5px }
+.setting-wrap:hover {
+  .icon-setting {display: none}
+  .setting-menu { display: block; }
+}
+
 </style>

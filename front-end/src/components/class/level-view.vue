@@ -1,5 +1,6 @@
 <template>
   <div>
+    <classInfo />
     <header class="header">
       <h1>level</h1>
       <span class="title-friend" v-if="!putTaskState"><i @click="putTaskToggle" class="fas fa-plus"></i></span>

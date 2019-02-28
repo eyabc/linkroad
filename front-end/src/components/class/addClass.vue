@@ -37,6 +37,7 @@
 					if(json.success){
 						alert('class 추가 완료')
 						this.$store.state.classList.push(data)
+						this.$store.commit('closeLayer')
 					} else {
 						alert('class 추가 실패')
 					}
