@@ -6,22 +6,23 @@
       <span class="title-friend" v-else><i @click="putTaskToggle" class="fas fa-times"></i></span>
     </header>
     <div class="tasks">
-      <form :action="`/api/put-task/${cidx}`" method="post" v-if="putTaskState" @submit.prevent="putTask" autocomplete="nope">
-        <input type="text" name="title" placeholder="Title" required="" autocomplete="nope">
-        <input type="text" name="url" placeholder="URL" autocomplete="nope">
+      <form :action="`/api/put-task/${cidx}`" method="post" v-if="putTaskState" @submit.prevent="putTask" autocomplete="off">
+        <input type="text" name="title" placeholder="Title" required="">
+        <input type="text" name="url" placeholder="URL" >
         <button type="submit"></button>
       </form>
       <ul class="list">
         <li class="list-item" v-for="(item, key) in task" :key="key" :class="{'task-active': key === activeTask}"> 
           <a href="#" @click.prevent="viewChildren(item.tidx, key)">{{item.title}}</a>
-          <span @click="updateTask"><i class="fas fa-edit"></i></span>
+          <span @click="updateTaskLayer"><i class="fas fa-edit"></i></span>
         </li>
       </ul>
     </div>
   </div>
 </template>
 <script type="text/javascript">
-
+  import updateTask from '@/components/layer/updateTask'
+  
   export default {
     data () {
       return {
@@ -77,8 +78,8 @@
          }
         }
       },
-      updateTask () {
-        console.log('test')
+      updateTaskLayer () {
+        this.$store.commit("openLayer",updateTask)
       },
   },
   props: ['task', 'level', 'tidx']
@@ -95,4 +96,11 @@
   margin: 8px
   button {display:none}
 }
+
+.list-item {position: relative;}
+.fa-edit { position: absolute; top:2px; right:2px; color:#ccc; transition:0.5s; padding: 10px; 
+  &:hover {color:#000}
+}
+
+
 </style>

@@ -59,10 +59,14 @@ router.post('/api/update-class/:cidx', async(req,res)=>{
 })
 
 router.post('/api/delete-class/:cidx', async(req, res)=>{
-	const sql = `DELETE FROM class WHERE cidx = ? `
+	const sql1 = `DELETE FROM class WHERE cidx = ? `
+	const sql2 = `DELETE FROM task WHERE cidx=?`
 	let resultJSON = {success: true}
 	try {
-		await execQuery(sql, [req.params.cidx])
+		await Promise.all([
+			execQuery(sql1, [req.params.cidx]),
+			execQuery(sql2, [req.params.cidx])
+		])
 	} catch(error) {
 		resultJSON.success = false
 	}

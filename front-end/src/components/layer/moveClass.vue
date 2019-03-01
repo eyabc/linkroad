@@ -18,14 +18,16 @@
 							method: 'post',
 							headers: {'Content-Type': 'application/json'},
 						}).then(res=>res.json())
+
 						if(json.success) {
 							alert('class 삭제 성공!')
+							this.$store.commit('closeLayer')
+							this.$router.push('/home')
 						} else {
 							alert('class 삭제 실패!')
 						}
 					}
 				}
-
 			}
 		}
 	</script>
