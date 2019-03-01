@@ -16,15 +16,27 @@ Vue.prototype.nl2br = str => {
 }
 
 const options = {
-  editors: {
-    classic: ClassicEditor,
-  },
-  name: 'ckeditor'
+	editors: {
+		classic: ClassicEditor,
+	},
+	name: 'ckeditor',
+	config: {
+		startupFocus: true
+	},
+	ready () {
+		console.log('test')
+	}
 }
 Vue.use(VueCkeditor.plugin, options);
+Vue.mixin({
+	mounted () {
+		const target = document.querySelectorAll('[autofocus]')
+		if (target.length > 0) target[0].focus()
+	}
+})
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app')

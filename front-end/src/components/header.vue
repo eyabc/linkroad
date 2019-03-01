@@ -12,7 +12,7 @@
 			<h1 class="logo"><router-link class="-" :to="`/home`">LinkRoad</router-link></h1>
 			<div class="search-frm">
 				<label class="input-label">
-					<input type="text" name="search-query" autofocus>
+					<input type="text" name="search-query">
 					<button type="submit" class="pre" @click.prevent="search"><i class="fas fa-search-location title-friend"></i></button>
 				</label>
 			</div>
@@ -25,7 +25,7 @@
 
 	export default {
 		created () {
-			this.memberCheck()
+			//this.memberCheck()
 		},
 		methods: {
 			openLoginPopup () {
@@ -41,14 +41,14 @@
 			},
 			memberCheck () {
 			// console.log("memberCheck")
-			fetch('/api/login').then(res=>res.json()).then(json=>{
-				console.log(json)
-				const storageMember = sessionStorage.getItem('member')
-				this.$store.state.member = json.success ? json.member : null
-			})
+				fetch('/api/login').then(res=>res.json()).then(json=>{
+					console.log(json)
+					const storageMember = sessionStorage.getItem('member')
+					this.$store.state.member = json.success ? json.member : null
+				})
+			}
 		}
 	}
-}
 </script>
 <style lang='scss'>
 

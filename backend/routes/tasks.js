@@ -38,4 +38,14 @@ router.get('/api/get-task/:cidx/:parent_task', async (req, res) => {
 	res.json(resultJSON)
 })
 
+router.put('/api/task', async(req, res) => {
+	const sql = `UPDATE task SET title = ?, url = ?, description=? WHERE tidx= ?`
+	resultJSON = {success: true}
+	try {
+		await execQuery(sql, [req.body.title, req.body.url, req.body.description, req.body.tidx])
+	} catch (error) {
+		resultJSON.success = false
+	}
+	res.json(resultJSON)
+})
 module.exports = router;

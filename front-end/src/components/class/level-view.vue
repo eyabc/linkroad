@@ -10,7 +10,7 @@
     </header>
     <div class="tasks">
       <form :action="`/api/put-task/${cidx}`" method="post" v-if="putTaskState" @submit.prevent="putTask" autocomplete="off">
-        <input type="text" name="title" placeholder="Title" required="" v-model="form.title">
+        <input type="text" name="title" placeholder="Title" required="" v-model="form.title" autofocus>
         <input type="text" name="url" placeholder="URL" v-model="form.url">
         <button type="submit"></button>
       </form>
@@ -23,7 +23,7 @@
               <span></span>
             </label>
           </span>
-          <span @click="updateTaskLayer" v-else><i class="fas fa-edit title-icon"></i></span>
+          <span @click="updateTaskLayer(item, key)"><i class="fas fa-edit title-icon"></i></span>
         </li>
       </ul>
     </div>
@@ -40,12 +40,11 @@
         activeTask: null,
         form: {
           title:'',
-          url:''
+          url:'',
         }
       }
     },
     created () {
-      console.log(this.deleteTask)
     },
     methods: {
       putTaskToggle () { this.putTaskState = !this.putTaskState },
@@ -92,55 +91,57 @@
         }
       }
     },
-    updateTaskLayer () {
+    updateTaskLayer (task, key) {
       this.$store.commit("openLayer",updateTask)
+      this.$store.state.layerData = task
+      this.$store.state.layerData.key = key
     },
   },
   props: ['task', 'level', 'tidx', 'deleteTask']
 }
 </script>
 <style lang="scss">
-.level-contents {
-  width: 300px;
-  header { border-bottom: #09f solid 2px; display: flex; justify-content: space-between;}
-  h1 {font-size: 20px;}
-  input { height: 20px; width: 100%; padding: 0; border-color: #ddd; padding: 0 10px; box-sizing:border-box}
-}
-.tasks{
-  margin: 8px
-  button {display:none}
-}
+	.level-contents {
+	  width: 300px;
+	  header { border-bottom: #09f solid 2px; display: flex; justify-content: space-between;}
+	  h1 {font-size: 20px;}
+	  input { height: 20px; width: 100%; padding: 0; border-color: #ddd; padding: 0 10px; box-sizing:border-box}
+	}
+	.tasks{
+	  margin: 8px
+	  button {display:none}
+	}
 
-.list-item {position: relative;
-  &:hover {color:#000}
-}
-.title-icon { position: absolute; top:2px; right:2px; color:#ccc; transition:0.5s; padding: 10px;  }
-.task-icon {
-  line-height: 26.88px; display:line-block; padding: 0 3px;
-}
-.fa-search { line-height: 26.88px; font-size: 15px; padding: 0 3px;}
-.cb1{display:none;}
-.cb1+span { display:inline-block;position:absolute;  width: 20px;height:20px; top:9px;  right: 10px;  background: #fff; border: #eee 1px solid; cursor: pointer;
-  &:hover{
-    background: #ffd6d6;
-  }
-}
-.cb1:checked+span:after{ 
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 9px;
-    background: #ffd6d6;
-    width: 2px;
-    height: 2px;
-    box-shadow: 
-      2px 0 0 red,
-      4px 0 0 red,
-      4px -2px 0 red,
-      4px -4px 0 red,
-      4px -6px 0 red,
-      4px -8px 0 red;
-    transform: rotate(45deg);
-}
+	.list-item {position: relative;
+	  &:hover {color:#000}
+	}
+	.title-icon { position: absolute; top:2px; right:2px; color:#ccc; transition:0.5s; padding: 10px;  }
+	.task-icon {
+	  line-height: 26.88px; display:line-block; padding: 0 3px;
+	}
+	.fa-search { line-height: 26.88px; font-size: 15px; padding: 0 3px;}
+	.cb1{display:none;}
+	.cb1+span { display:inline-block;position:absolute;  width: 20px;height:20px; top:9px;  right: 40px;  background: #fff; border: #eee 1px solid; cursor: pointer;
+	  &:hover{
+	    background: #ffd6d6;
+	  }
+	}
+	.cb1:checked+span:after{ 
+	    content: '';
+	    position: absolute;
+	    left: 5px;
+	    top: 9px;
+	    background: #ffd6d6;
+	    width: 2px;
+	    height: 2px;
+	    box-shadow: 
+	      2px 0 0 red,
+	      4px 0 0 red,
+	      4px -2px 0 red,
+	      4px -4px 0 red,
+	      4px -6px 0 red,
+	      4px -8px 0 red;
+	    transform: rotate(45deg);
+	}
 </style>
 
