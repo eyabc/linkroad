@@ -64,6 +64,7 @@
 					if(json.success){
 						alert('로그인 되었습니다.')
 						this.$store.state.member = json.member
+						localStorage.setItem('member', JSON.stringify(json.member))
 						this.$store.commit('closeLayer')
 						this.$router.push('/home')
 					} else {

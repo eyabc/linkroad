@@ -1,20 +1,29 @@
 <template>
   <div>
+
     <header class="header">
-      <h1>level</h1>
-      <span class="title-friend" v-if="!putTaskState"><i @click="putTaskToggle" class="fas fa-plus"></i></span>
-      <span class="title-friend" v-else><i @click="putTaskToggle" class="fas fa-times"></i></span>
+      <h1>
+        <span><i class="title-friend fas fa-search"></i></span>
+      </h1>
+      <span class="title-friend task-icon" v-if="!putTaskState"><i @click="putTaskToggle" class="fas fa-plus"></i></span>
+      <span class="title-friend task-icon" v-else><i @click="putTaskToggle" class="fas fa-times"></i></span>
     </header>
     <div class="tasks">
       <form :action="`/api/put-task/${cidx}`" method="post" v-if="putTaskState" @submit.prevent="putTask" autocomplete="off">
-        <input type="text" name="title" placeholder="Title" required="">
-        <input type="text" name="url" placeholder="URL" >
+        <input type="text" name="title" placeholder="Title" required="" v-model="form.title">
+        <input type="text" name="url" placeholder="URL" v-model="form.url">
         <button type="submit"></button>
       </form>
       <ul class="list">
         <li class="list-item" v-for="(item, key) in task" :key="key" :class="{'task-active': key === activeTask}"> 
           <a href="#" @click.prevent="viewChildren(item.tidx, key)">{{item.title}}</a>
-          <span @click="updateTaskLayer"><i class="fas fa-edit"></i></span>
+          <span v-if="deleteTask" >
+            <label>
+              <input type="checkbox" class="cb1">
+              <span></span>
+            </label>
+          </span>
+          <span @click="updateTaskLayer" v-else><i class="fas fa-edit title-icon"></i></span>
         </li>
       </ul>
     </div>
@@ -29,10 +38,14 @@
         putTaskState: false,
         cidx: this.$route.params.cidx,
         activeTask: null,
+        form: {
+          title:'',
+          url:''
+        }
       }
     },
     created () {
-      console.log(this.task)
+      console.log(this.deleteTask)
     },
     methods: {
       putTaskToggle () { this.putTaskState = !this.putTaskState },
@@ -49,12 +62,13 @@
           body: JSON.stringify(data)
         }).then(res=>res.json())
         if(json.success){
+          this.form = ''
           data.tidx = json.tidx
           this.task.push(data)
         } else {
           alert('task 추가 실패')
         }
-        },
+      },
       async viewChildren (tidx, key) {
         console.log(tidx)
         if(this.activeTask === key){
@@ -75,14 +89,14 @@
           // arr[this.level + 1] = json.taskInfo
           // arr.splice(this.level + 2, arr.length - 1)
           // this.$parent.tasks = arr
-         }
         }
-      },
-      updateTaskLayer () {
-        this.$store.commit("openLayer",updateTask)
-      },
+      }
+    },
+    updateTaskLayer () {
+      this.$store.commit("openLayer",updateTask)
+    },
   },
-  props: ['task', 'level', 'tidx']
+  props: ['task', 'level', 'tidx', 'deleteTask']
 }
 </script>
 <style lang="scss">
@@ -97,10 +111,36 @@
   button {display:none}
 }
 
-.list-item {position: relative;}
-.fa-edit { position: absolute; top:2px; right:2px; color:#ccc; transition:0.5s; padding: 10px; 
+.list-item {position: relative;
   &:hover {color:#000}
 }
-
-
+.title-icon { position: absolute; top:2px; right:2px; color:#ccc; transition:0.5s; padding: 10px;  }
+.task-icon {
+  line-height: 26.88px; display:line-block; padding: 0 3px;
+}
+.fa-search { line-height: 26.88px; font-size: 15px; padding: 0 3px;}
+.cb1{display:none;}
+.cb1+span { display:inline-block;position:absolute;  width: 20px;height:20px; top:9px;  right: 10px;  background: #fff; border: #eee 1px solid; cursor: pointer;
+  &:hover{
+    background: #ffd6d6;
+  }
+}
+.cb1:checked+span:after{ 
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: #ffd6d6;
+    width: 2px;
+    height: 2px;
+    box-shadow: 
+      2px 0 0 red,
+      4px 0 0 red,
+      4px -2px 0 red,
+      4px -4px 0 red,
+      4px -6px 0 red,
+      4px -8px 0 red;
+    transform: rotate(45deg);
+}
 </style>
+

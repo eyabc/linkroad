@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    member: null,
+    member: JSON.parse(localStorage.getItem('member')),
     layerState: false,
     siteurl: "http://localhost:8080",
     classList: [],
@@ -15,7 +15,7 @@ export default new Vuex.Store({
     openLayer(state, val) { state.layerState = val},
     closeLayer(state) { state.layerState = false},
     
-    logout(state) { state.member = null },
+    logout(state) { state.member = null},
     setClassList(state, val) { state.classList = val},
     setClassInfo(state, val) { state.classInfo = val}
   },

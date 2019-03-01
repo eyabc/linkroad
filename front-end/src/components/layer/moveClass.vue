@@ -1,8 +1,8 @@
 <template>
 	<div class="move-class-contents">
-		<h3 class="layer-title">클래스 설정</h3>
+		<h3 class="text-center">클래스 설정</h3>
 
-		<ul>
+		<ul class="text-center">
 			<li><span>이동하기</span></li>
 			<li><span>임시저장소로 이동</span</li>
 				<li><span @click="deleteClass">삭제하기</span></li>
@@ -41,5 +41,6 @@
 		}
 		.layer-title { margin-bottom: 0px; padding: 10px 0;}
 	}
+	.text-center { text-align: center}
 
 </style>
