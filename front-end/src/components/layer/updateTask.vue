@@ -62,7 +62,10 @@
 					editor.editing.view.focus()
 				},
 				openLink () {
-					if (this.openLinkPrevent) window.open(this.data.url)
+					if (this.data.url.length === 0)
+						this.openLinkFocus()
+					else if (this.openLinkPrevent)
+						window.open(this.data.url)
 				},
 				openLinkFocus () {
 					this.openLinkPrevent = false
