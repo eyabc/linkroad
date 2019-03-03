@@ -2,16 +2,16 @@
 	<div class="ClassLayer">
 		<label class="input-label">
 			<span class="pre"><i class="fas fa-tag"></i></span>
-			<input type="text" v-model="data.title" class="full-width" @blur="update">
+			<input type="text" v-model="data.title" class="full-width" @blur="update" tabindex="0">
 			<span class="lbl">제목</span>
 		</label>
 		<div v-show="UpdateDesc">
-			<ckeditor type="classic" v-model="data.description" @blur="UpdateDescClose" @ready="editorFocus"></ckeditor>
+			<ckeditor type="classic" v-model="data.description" @blur="UpdateDescClose" @ready="editorFocus" tabindex="1"></ckeditor>
 		</div>
 		<div v-show="!UpdateDesc" class="task-content" v-html="nl2br(data.description)" @click="UpdateDescOpen" />
 		<label class="input-label">
 			<span class="pre"><i class="fas fa-tag"></i></span>
-			<input type="text" v-model="data.url" class="full-width" @blur="update">
+			<input type="text" v-model="data.url" class="full-width" @blur="update" tabindex="2">
 			<span class="lbl">URL</span>
 		</label>
 	</div>	
@@ -34,18 +34,8 @@
 			}
 		},
 		methods: {
-			initLayerData () {
-				this.data.tidx = this.$store.state.layerData.tidx
-				this.data.url = this.$store.state.layerData.url
-				this.data.title = this.$store.state.layerData.title
-				this.data.description = this.$store.state.layerData.description
-			},
-			setLayerData () {
-				this.$store.state.layerData.tidx = this.data.tidx
-				this.$store.state.layerData.url = this.data.url
-				this.$store.state.layerData.title = this.data.title
-				this.$store.state.layerData.description = this.data.description
-			},
+			initLayerData () { Object.assign(this.data, this.$store.state.layerData) },
+			setLayerData () { Object.assign(this.$store.state.layerData, this.data) },
 			async update () {
 				const json = await fetch('/api/task', {
 					method: 'put',
