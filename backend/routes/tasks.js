@@ -48,4 +48,13 @@ router.put('/api/task', async(req, res) => {
 	}
 	res.json(resultJSON)
 })
+
+router.delete('/api/task', async(req,res) => {
+	const idxs = req.body.idxs.toLocaleString()
+	const sql = `DELETE FROM task WHERE tidx in (${req.body.tidx})`
+	try { await execQuery(sql, [req.body.tidx])}
+	catch (error) {resultJSON.success = false}
+	res.json(resultJSON)
+})
+
 module.exports = router;

@@ -34,7 +34,7 @@
 			logout () {
 				this.$store.commit('logout')
 				this.$router.push('/')
-				sessionStorage.clear();
+				localStorage.clear();
 			},
 			search () {
 				console.log("search")
@@ -43,7 +43,7 @@
 			// console.log("memberCheck")
 				fetch('/api/login').then(res=>res.json()).then(json=>{
 					console.log(json)
-					const storageMember = sessionStorage.getItem('member')
+					const storageMember = localStorage.getItem('member')
 					this.$store.state.member = json.success ? json.member : null
 				})
 			}
