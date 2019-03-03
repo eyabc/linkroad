@@ -144,4 +144,5 @@ fa-cog {display: block; padding: 5px;}
 .task-sub-item { display: flex;  align-items:center; width: 150px; text-align: center; justify-content: center; width: 75px; font-size: 13px; padding: 3px 0; border: solid 1px #fff;
   &:hover {background: #09f; opacity: 0.6; color: #fff}
 }
+.url-update { position: absolute; top: 0}
 </style>
