@@ -1,3 +1,4 @@
-start D:\project\20190207LinkRoad\backend.bat
-start D:\project\20190207LinkRoad\frontend.bat
-start D:\project\20190207LinkRoad\cmd.bat
+
+start %cd%\backend.bat
+start %cd%\frontend.bat
+start %cd%\cmd.bat

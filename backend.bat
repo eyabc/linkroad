@@ -1,3 +1,3 @@
-d:
-cd D:\project\20190207LinkRoad\backend
+
+cd %cd%\backend
 npm start

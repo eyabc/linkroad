@@ -1,3 +1,2 @@
-d:
-cd D:\project\20190207LinkRoad\front-end
+cd %cd%\front-end
 yarn serve
