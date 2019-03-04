@@ -45,6 +45,8 @@
       }
     },
     created () {
+      this.$store.state.taskList=this.task
+
     },
     methods: {
       putTaskToggle () { this.putTaskState = !this.putTaskState },

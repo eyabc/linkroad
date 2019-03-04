@@ -5,7 +5,7 @@ const router = require('express').Router()
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+	res.send('respond with a resource');
 });
 
 router.post('/api/put-task/:cidx', async (req, res) => {
@@ -51,10 +51,31 @@ router.put('/api/task', async(req, res) => {
 
 router.delete('/api/task', async(req,res) => {
 	const idxs = req.body.idxs.toLocaleString()
-	const sql = `DELETE FROM task WHERE tidx in (${req.body.tidx})`
-	try { await execQuery(sql, [req.body.tidx])}
+	const sql = `
+	DELETE FROM task WHERE tidx in (${idxs});
+	DELETE FROM task WHERE parent in (${idxs});
+	`
+	try { await execQuery(sql)}
 	catch (error) {resultJSON.success = false}
 	res.json(resultJSON)
 })
+router.post('/api/task-only', async(req,res) => {
+	const tidx = req.body.tidx
+	const parent_task = req.body.parent_task
+	const resultJSON = { success: true}
+	const sql1 = `
+	DELETE FROM task WHERE tidx = ?;
+	` 
+	const sql2 = `
+	UPDATE task SET parent_task = ? WHERE parent_task = ?;
+	`
+	try { 
+		await Promise.all([
+			execQuery(sql1, [tidx]),
+			execQuery(sql2, [parent_task, tidx])
+		])
 
+	} catch(error) { resultJSON.success = false }
+	res.json(resultJSON)
+})
 module.exports = router;

@@ -21,7 +21,8 @@ export default new Vuex.Store({
     logout(state) { state.member = null},
     setClassList(state, val) { state.classList = val},
     setClassInfo(state, val) { state.classInfo = val},
-    setLayerData(state, key) { state.taskList[key] = state.layerData}
+    setLayerData(state, key) { state.taskList[key] = state.layerData},
+    deleteTask(state, key) { state.taskList.splice(key, 1) }
   },
   actions: {
 

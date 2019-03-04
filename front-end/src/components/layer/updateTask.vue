@@ -17,7 +17,7 @@
 			<span><i class="fas fa-pen-square" @click="openLinkFocus"></i></span>
 		</div>
 		<span class="taskmore" @click="openSetTaskToggle"><i class="more-icon fas fa-ellipsis-v"></i></span>
-		<setTask class="setTask-wrap" :class="{ showSetTask : openSetTask }"/>
+		<setTask class="setTask-wrap" :class="{ showSetTask : openSetTask }" :taskInfo="data"/>
 		<span class="taskmore closeSetTask  " @click="openSetTaskToggle" v-if="openSetTask"><i class="fas fa-angle-left more-icon"></i></span>
 
 	</div>	
@@ -28,6 +28,7 @@
 		components: {setTask},
 
 		created () {
+
 			this.initLayerData ()
 		},
 		data (e) {
@@ -37,7 +38,8 @@
 					title: '',
 					url: '',
 					description: '',
-					editor: null
+					editor: null,
+					parent_tidx: null,
 				},
 				UpdateDesc: false ,
 				openLinkPrevent: true,
@@ -86,7 +88,8 @@
 				this.openSetTask = !this.openSetTask
 			},
 			test () {console.log("test")}
-		}
+		},
+		props: ['task']
 	}
 </script>
 <style lang="scss">
