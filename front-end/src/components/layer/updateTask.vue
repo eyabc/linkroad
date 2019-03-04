@@ -16,11 +16,17 @@
 			</label>
 			<span><i class="fas fa-pen-square" @click="openLinkFocus"></i></span>
 		</div>
-		<span class="taskmore"><i class="fas fa-ellipsis-v"></i></span>
+		<span class="taskmore" @click="openSetTaskToggle"><i class="more-icon fas fa-ellipsis-v"></i></span>
+		<setTask class="setTask-wrap" :class="{ showSetTask : openSetTask }"/>
+		<span class="taskmore closeSetTask  " @click="openSetTaskToggle" v-if="openSetTask"><i class="fas fa-angle-left more-icon"></i></span>
+
 	</div>	
 </template>
 <script type="text/javascript">
+	import setTask from '@/components/layer/setTask'
 	export default {
+		components: {setTask},
+
 		created () {
 			this.initLayerData ()
 		},
@@ -34,7 +40,8 @@
 					editor: null
 				},
 				UpdateDesc: false ,
-				openLinkPrevent: true
+				openLinkPrevent: true,
+				openSetTask: false
 			}
 		},
 		methods: {
@@ -74,7 +81,11 @@
 				this.$nextTick(() => {
 					this.$refs.link.focus()						
 				})
-			}
+			},
+			openSetTaskToggle () {
+				this.openSetTask = !this.openSetTask
+			},
+			test () {console.log("test")}
 		}
 	}
 </script>
@@ -100,8 +111,14 @@
 		&>i:hover { font-size: 25px; transition: 0.5s}
 	}
 }
-.fa-ellipsis-v {position: absolute; top:50%; left: 0; width: 40px; height: 20px; display: flex; justify-content: center; vertical-align: center;
+.more-icon { position: absolute; display: inline-block; display:flex; justify-content: center; vertical-align: center; 
 	&:hover { font-size: 20px; transition: .3s; color: #09f}	
 }
-.taskmore {display:inline-block; }
+.fa-ellipsis-v {left: 0; top:50%; width: 40px; height: 20px;}
+.taskmore {cursor: pointer}
+.setTask-wrap {position: absolute; width: 0; height: 100%; background: #eee; z-index: 10; left:0; top:0; transition: .5s; overflow: hidden;}
+
+.closeSetTask {  top: 40px}
+.fa-angle-left { right: 0; display: inline-block; width: 30px; height: calc( 100% - 30px); top:30px; display: inline-block; display:flex; justify-content: center; align-items: center; }
+.showSetTask {  width:750px }
 </style>
